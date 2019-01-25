@@ -1,70 +1,64 @@
 import java.io.*;
 import java.io.FileReader;
 import java.text.ParseException;
+import java.util.ArrayList;
 
 
-public class PtextDealer {
-    public String[] arrayRefVar;
+public class FileParser {
+    //Dynamic Array to avoid having a strict size array, in Java we can't change is size
+    public ArrayList<String> arrayRefVar = new ArrayList<String>();
     public FileReader filename = null;
 
-    public PtextDealer(){
-
-    }
-    public PtextDealer(String filename){
+    /**
+     * default constructor
+     * */
+    public FileParser(){
         try {
             this.filename = new FileReader("input.txt");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        this.arrayRefVar = {};
     }
-
-    public int processFile(){
+    /**
+     * Check file existence
+     * @param filename name of the file with strings
+     * **/
+    public FileParser(String filename){
         try {
-            char [] a = new char[50];
-            filename.read(a);   // reads the content to the array
-            for(char c : a)
-                System.out.print(c);   // prints the characters one by one
-        } catch (IOException e) {
+            this.filename = new FileReader(filename);
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
-            //finally block allows you to run any cleanup-type statements
-            // that you want to execute, no matter what happens in the protected code.
-        }finally {
-            try {
-                filename.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
         }
-        //Status OK;
-        return 200;
     }
 
     /**
      * line by line file reader
-     * @param
-     * @return
+     * @return 200 is OK
      */
-    public void lineReaderParse(final int numberOfFiles) throws IOException, ParseException {
+    public int lineReaderParse() throws IOException, ParseException {
             String line;
-
             FileReader frd = this.filename;
             BufferedReader brd = new BufferedReader(frd);
 
-            while ((line=brd.readLine())!=null)
+        try {
+            while ((line = brd.readLine()) != null) {
+                this.arrayRefVar.add(line);
+            }
 
-            brd.close();
-            frd.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        //finally block allows you to run any cleanup-type statements
+        // that you want to execute, no matter what happens in the protected code.
+        }finally {
+            try {
+                brd.close();
+                frd.close();
+            }catch(IOException ex){
+                ex.printStackTrace();
+            }
 
+        }
+        return 200;
     }
 
-    public final void doSomethingWithLine(String line) throws ParseException {
-        // Example of what to do for each line
-        String[] fields = line.split(";");
-        Date dt = fmt.parse(fields[0]);
-        double d = Double.parseDouble(fields[1]);
-        int t = Integer.parseInt(fields[2]);
-        if (fields[3].equals("overrun"))
-            overrunCount++;
-    }
 }

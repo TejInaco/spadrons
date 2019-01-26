@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 
 public class Main {
     
@@ -16,6 +17,9 @@ public class Main {
 
             System.out.println(ex.getMessage());
         }
+
+        ArrayList<String> b = firstFile.arrayRefVar;
+
     //Efeitos de teste
         if(checkStatus == 200){
             System.out.println(firstFile.arrayRefVar.get(0));

@@ -1,13 +1,17 @@
+import parserText.StringsParser;
+
 import java.io.*;
 import java.io.FileReader;
 import java.text.ParseException;
 import java.util.ArrayList;
 
 
+
 public class FileParser {
     //Dynamic Array to avoid having a strict size array, in Java we can't change is size
     public ArrayList<String> arrayRefVar = new ArrayList<String>();
     public FileReader filename = null;
+    public StringsParser lotsOfStrings;
 
     /**
      * default constructor
@@ -24,11 +28,15 @@ public class FileParser {
      * @param filename name of the file with strings
      * **/
     public FileParser(String filename){
+        //le o ficheiro
         try {
             this.filename = new FileReader(filename);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+    public StringsParser getLotsOfStrings(){
+        return this.lotsOfStrings;
     }
 
     /**

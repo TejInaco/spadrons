@@ -1,0 +1,218 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: StringsParser</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">parserText</a> ]
+</div>
+
+<h1>Coverage Summary for Class: StringsParser (parserText)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">StringsParser</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 52)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package parserText;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.util.ArrayList;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;public class StringsParser {
+<b class="nc"><i>6</i>&nbsp;    public ArrayList&lt;String&gt; frases = new ArrayList&lt;String&gt;();</b>
+<b class="nc"><i>7</i>&nbsp;    public ArrayList&lt;String&gt; padroes = new ArrayList&lt;String&gt;();</b>
+<b class="nc"><i>8</i>&nbsp;    public int numero = 0;</b>
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;    public StringsParser(){}
+<b class="nc"><i>11</i>&nbsp;    public StringsParser(ArrayList&lt;String&gt; b){</b>
+<b class="nc"><i>12</i>&nbsp;        this.frases = b;</b>
+<i>13</i>&nbsp;    }
+<i>14</i>&nbsp;    public ArrayList&lt;String&gt; getFrases() {
+<b class="nc"><i>15</i>&nbsp;        return frases;</b>
+<i>16</i>&nbsp;    }
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;    public ArrayList&lt;String&gt; getPadroes() {
+<b class="nc"><i>19</i>&nbsp;        return padroes;</b>
+<i>20</i>&nbsp;    }
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;    public void setFrases(ArrayList&lt;String&gt; frases) {
+<b class="nc"><i>23</i>&nbsp;        this.frases = frases;</b>
+<i>24</i>&nbsp;    }
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    public void setPadroes(ArrayList&lt;String&gt; padroes) {
+<b class="nc"><i>27</i>&nbsp;        this.padroes = padroes;</b>
+<i>28</i>&nbsp;    }
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    public int getNumero() {
+<b class="nc"><i>31</i>&nbsp;        return numero;</b>
+<i>32</i>&nbsp;    }
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;    /**
+<i>35</i>&nbsp;     *
+<i>36</i>&nbsp;     * @param c choice number to choose differents state machines
+<i>37</i>&nbsp;     *
+<i>38</i>&nbsp;     * */
+<i>39</i>&nbsp;    public void startDecompost(int c){
+<b class="nc"><i>40</i>&nbsp;        switch(c){</b>
+<i>41</i>&nbsp;            case 0:
+<b class="nc"><i>42</i>&nbsp;                break;</b>
+<i>43</i>&nbsp;            case 1:
+<b class="nc"><i>44</i>&nbsp;                this.algure1();</b>
+<b class="nc"><i>45</i>&nbsp;                break;</b>
+<i>46</i>&nbsp;            case 2:
+<b class="nc"><i>47</i>&nbsp;                break;</b>
+<i>48</i>&nbsp;            case 3:
+<b class="nc"><i>49</i>&nbsp;                break;</b>
+<i>50</i>&nbsp;            default:
+<i>51</i>&nbsp;                break;
+<i>52</i>&nbsp;        }
+<i>53</i>&nbsp;    }
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;    /**
+<i>56</i>&nbsp;     * Precorrer a array frases e passa os chares processados para a string secundaria
+<i>57</i>&nbsp;     * */
+<i>58</i>&nbsp;    public void algure1(){
+<i>59</i>&nbsp;
+<b class="nc"><i>60</i>&nbsp;        for(String ite: this.frases) {</b>
+<b class="nc"><i>61</i>&nbsp;            String str =  dealingString(ite);</b>
+<b class="nc"><i>62</i>&nbsp;            this.padroes.add(str);</b>
+<b class="nc"><i>63</i>&nbsp;        }</b>
+<i>64</i>&nbsp;    }
+<i>65</i>&nbsp;
+<i>66</i>&nbsp;    /**
+<i>67</i>&nbsp;     * @param str frase a ser processa, cada index da array frases
+<i>68</i>&nbsp;     * @return  nova string
+<i>69</i>&nbsp;     * */
+<i>70</i>&nbsp;    public String dealingString(String str){
+<b class="nc"><i>71</i>&nbsp;        int estado = 0;</b>
+<b class="nc"><i>72</i>&nbsp;        StringBuilder sb = new StringBuilder();</b>
+<b class="nc"><i>73</i>&nbsp;        String regex = &quot;^(?=.*?\\p{Lu})(?=.*?\\p{L})(?=.*?\\d)&quot; +</b>
+<i>74</i>&nbsp;               &quot;(?=.*?[`~!@#$%^&amp;*()\\-_=+\\\\|\\[{\\]};:&#39;\&quot;,&lt;.&gt;/?]).*$&quot; ;
+<b class="nc"><i>75</i>&nbsp;        for (int i = 0; i &lt; str.length(); i++) {</b>
+<b class="nc"><i>76</i>&nbsp;            switch (estado) {</b>
+<i>77</i>&nbsp;                case 0:
+<b class="nc"><i>78</i>&nbsp;                    char letter = str.charAt(i);</b>
+<i>79</i>&nbsp;                    char newletter;
+<b class="nc"><i>80</i>&nbsp;                    char[] list = {&#39;a&#39;, &#39;e&#39;, &#39;i&#39;, &#39;o&#39;, &#39;u&#39;};</b>
+<b class="nc"><i>81</i>&nbsp;                    for(char dalist: list){</b>
+<b class="nc"><i>82</i>&nbsp;                        if ( Character.compare( dalist, letter) == 0) {</b>
+<b class="nc"><i>83</i>&nbsp;                            newletter = Character.toUpperCase(letter);</b>
+<b class="nc"><i>84</i>&nbsp;                            letter = newletter;</b>
+<i>85</i>&nbsp;
+<i>86</i>&nbsp;                        }
+<i>87</i>&nbsp;                    }
+<b class="nc"><i>88</i>&nbsp;                    sb.append(letter);</b>
+<b class="nc"><i>89</i>&nbsp;                    estado = 1;</b>
+<b class="nc"><i>90</i>&nbsp;                    break;</b>
+<i>91</i>&nbsp;                case 1:
+<i>92</i>&nbsp;                    //espaços em branco Unicode whitespace character
+<b class="nc"><i>93</i>&nbsp;                    if (Character.isWhitespace(str.charAt(i))) {</b>
+<b class="nc"><i>94</i>&nbsp;                        estado = 0;</b>
+<i>95</i>&nbsp;                    }
+<i>96</i>&nbsp;//        If you mean any of the traditional ASCII whitespace characters (SP, HT, VT, CR, NL), then:
+<i>97</i>&nbsp;//    if (ch == &#39; &#39; || ch == &#39;\t&#39; || ch == &#39;\r&#39; || ch == &#39;\n&#39; || ch == &#39;\x0b&#39;) {
+<i>98</i>&nbsp;//    }
+<i>99</i>&nbsp;//          traditional ASCII whitespace
+<b class="nc"><i>100</i>&nbsp;                    if (str.charAt(i) == &#39; &#39;) {</b>
+<b class="nc"><i>101</i>&nbsp;                        estado = 0;</b>
+<i>102</i>&nbsp;                    }
+<i>103</i>&nbsp;                    //tabs
+<b class="nc"><i>104</i>&nbsp;                    if (str.charAt(i) == &#39;\t&#39;) {</b>
+<b class="nc"><i>105</i>&nbsp;                        estado = 0;</b>
+<i>106</i>&nbsp;                    }
+<i>107</i>&nbsp;                    //If you mean any Unicode whitespace character, then:
+<i>108</i>&nbsp;                    //            if (Character.isWhitespace(ch)) }
+<b class="nc"><i>109</i>&nbsp;                    if (    !Character.isAlphabetic(str.charAt(i)) &amp;&amp; !Character.isWhitespace(str.charAt(i))  ) {</b>
+<b class="nc"><i>110</i>&nbsp;                        sb.append(str.charAt(i));</b>
+<i>111</i>&nbsp;                    }
+<i>112</i>&nbsp;                    break;
+<i>113</i>&nbsp;                default:
+<i>114</i>&nbsp;                    break;
+<i>115</i>&nbsp;
+<i>116</i>&nbsp;            }
+<i>117</i>&nbsp;        }
+<b class="nc"><i>118</i>&nbsp;        int lengthSize = processLastElement(sb);</b>
+<b class="nc"><i>119</i>&nbsp;        sb.append(&#39;_&#39;);</b>
+<b class="nc"><i>120</i>&nbsp;        sb.append(lengthSize);</b>
+<b class="nc"><i>121</i>&nbsp;        String sb_string = sb.toString();</b>
+<b class="nc"><i>122</i>&nbsp;        return sb_string;</b>
+<i>123</i>&nbsp;    }
+<i>124</i>&nbsp;
+<i>125</i>&nbsp;    public int processLastElement(StringBuilder strHalfWay){
+<i>126</i>&nbsp;        int i;
+<b class="nc"><i>127</i>&nbsp;        int number=0;</b>
+<b class="nc"><i>128</i>&nbsp;        for(i=0; i &lt; strHalfWay.length(); i++)</b>
+<b class="nc"><i>129</i>&nbsp;            if (    Character.isLetter( strHalfWay.charAt(i))   ) {</b>
+<b class="nc"><i>130</i>&nbsp;                number++;</b>
+<i>131</i>&nbsp;            }
+<b class="nc"><i>132</i>&nbsp;        return number;</b>
+<i>133</i>&nbsp;    }
+<i>134</i>&nbsp;
+<i>135</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2019-01-27 21:32</div>
+</div>
+</body>
+</html>

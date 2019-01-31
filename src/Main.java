@@ -1,12 +1,22 @@
+import javax.swing.*;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
-
+import components.*;
 public class Main {
-    
-    
-    public static void main(String[] args) throws ParseException {
 
+
+    public static void main(String[] args) throws ParseException {
+        Janela tp = new Janela();
+      /*
+        SwingUtilities.invokeLater(new Janela() {
+            public void run() {
+                //Turn off metal's use of bold fonts
+                UIManager.put("swing.boldMetal", Boolean.FALSE);
+                createUIComponents();
+            }
+        });
+*/
         FileParser firstFile = new FileParser();
         int checkStatus = 0;
 
